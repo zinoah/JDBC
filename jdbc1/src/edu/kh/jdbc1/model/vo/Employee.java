@@ -6,6 +6,9 @@ public class Employee {
 	private String jobName;
 	private int salary; 
 	private int annualIncome; // 연봉(연간수입)
+	private String hireDate;
+	private char gender;
+	
 	
 	public Employee() {}
 	
@@ -47,6 +50,22 @@ public class Employee {
 
 	public void setAnnualIncome(int annualIncome) {
 		this.annualIncome = annualIncome;
+	}
+
+	public String getHireDate() {
+		return hireDate;
+	}
+
+	public void setHireDate(String hireDate) {
+		this.hireDate = hireDate;
+	}
+
+	public char getGender() {
+		return gender;
+	}
+
+	public void setGender(char gender) {
+		this.gender = gender;
 	}
 
 	@Override
