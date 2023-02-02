@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.List;
+import java.util.Map;
 
 import edu.kh.emp.model.dao.EmployeeDAO;
 //import edu.kh.emp.model.dao.EmployeeDAO;
@@ -136,8 +137,11 @@ public class EmployeeView {
 		System.out.println("====== 사번 일치 사원 정보 조회 ======");
 		
 		System.out.print("사번을 입력하세요 : ");
+		// 사번 입력 받기
 		int empId = sc.nextInt();
 		
+		// 입력 받은 사번을 DAO seletEmpId() 메서드로 전달하여 
+		// 조회된 사원 정보 반환 받기
 		Employee emp = dao.selectEmpId(empId);
 		
 		printOne(emp);
@@ -335,22 +339,60 @@ public class EmployeeView {
 	 * 입력 받은 급여 이상을 받는 모든 사원 정보 조회
 	 */
 	public void selectSalaryEmp(){
+		System.out.println("------ 입력 받은 급여 이상을 받는 모든 사원 정보 조회 ------");
 		
+		System.out.print("급여 입력 : ");
+		int salary = sc.nextInt();
 		
+		List<Employee> empList = dao.selectSalaryEmp(salary);
+		
+		if(empList.isEmpty()) {
+			System.out.println("조회된 사원 정보가 없습니다.");
+		} else {
+			System.out.println("사번  |   이름  | 주민 등록 번호 |        이메일        |  전화 번호  |    부서    | 직책 | 급여" );
+			System.out.println("------------------------------------------------------------------------------------------------");
+			for(Employee emp : empList) { 
+				System.out.printf(" %2d  | %4s | %s | %20s | %s | %s | %s | %d\n",
+						emp.getEmpId(), emp.getEmpName(), emp.getEmpNo(), emp.getEmail(), 
+						emp.getPhone(), emp.getDepartmentTitle(), emp.getJobName(), emp.getSalary());
+			}
+		}
 	}
 	
 	/**
 	 * 부서별 급여 합 전체 조회
 	 */
 	public void selectDeptTotalSalary() {
+		// key : 부서 value : 급여 합 
 		
+		System.out.println( "====== 부서별 급여 합 전체 조회 ======");
+		
+		System.out.println("|  부서  |    급여 합    |");
+		
+		Map<String, Integer> totalSalary = dao.deptTotalSalary();
+		
+			for( String strKey : totalSalary.keySet() ){
+				int intValue = totalSalary.get(strKey);
+				System.out.println("|  " + strKey + "    |  " + intValue +  "    |" );
+			
+			} 
 	}
 	
 	/**
 	 * 직급별 급여 평균 조회
 	 */
 	public void selectJobAvgSalary() {
+		System.out.println( "====== 부서별 급여 평균 조회 ======");
 		
+		System.out.println("|  부서  |    평균    |");
+		
+		Map<String, Integer> avgSalary = dao.deptAvgSalary();
+		
+			for( String strKey : avgSalary.keySet() ){
+				int strValue = avgSalary.get(strKey);
+				System.out.println("|  " + strKey + "    |  " + strValue +  "    |" );
+			
+			}
 		
 	}
 	
