@@ -384,7 +384,7 @@ public class EmployeeView {
 	public void selectJobAvgSalary() {
 		System.out.println( "====== 부서별 급여 평균 조회 ======");
 		
-		System.out.println("|  부서  |    평균    |");
+		System.out.println("|  직급  |    평균    |");
 		
 		Map<String, Integer> avgSalary = dao.deptAvgSalary();
 		

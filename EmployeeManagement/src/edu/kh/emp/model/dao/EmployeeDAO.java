@@ -527,7 +527,7 @@ public class EmployeeDAO {
 			String sql = "SELECT NVL(DEPT_CODE, '부서없음') DEPT_CODE, SUM(SALARY) SALARY "
 					+ "FROM EMPLOYEE "
 					+ "GROUP BY NVL(DEPT_CODE, '부서없음')"
-					+ "ORDER BY DEPT_CODE";
+					+ "ORDER BY DEPT_CODE";	
 			
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
@@ -557,7 +557,7 @@ public class EmployeeDAO {
 		return totalSalary;
 	}
 
-	/**	부서별 급여 평균 조회 DAO
+	/**	직급별 급여 평균 조회 DAO
 	 * @return avgSalary
 	 */
 	public Map<String, Integer> deptAvgSalary() {
@@ -568,17 +568,18 @@ public class EmployeeDAO {
 			Class.forName(driver); 
 			conn = DriverManager.getConnection(url, user, pw);
 			
-			String sql = "SELECT DEPT_CODE , AVG(SALARY) SALARY "
+			String sql = "SELECT JOB_NAME , ROUND(AVG(SALARY),1) SALARY "
 					+ "FROM EMPLOYEE "
-					+ "GROUP BY DEPT_CODE "
-					+ "ORDER BY DEPT_CODE";
+					+ "JOIN JOB USING(JOB_CODE) "
+					+ "GROUP BY JOB_NAME, JOB_CODE "
+					+ "ORDER BY JOB_CODE";
 			
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
 				
-				String departmentCode = rs.getString("DEPT_CODE");
+				String departmentCode = rs.getString("JOB_NAME");
 				int salary = rs.getInt("SALARY");
 				
 			
