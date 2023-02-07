@@ -76,6 +76,7 @@ public class TestService {
 				result = 1;
 			}else {
 				rollback(conn);
+				
 			}
 		}catch(SQLException e){ // dao 수행중에 예외가 방생했을때
 			rollback(conn);

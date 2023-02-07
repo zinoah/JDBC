@@ -117,8 +117,7 @@ public class JDBCExample {
         	
         	// java.sql.Date의 toString()은 yyyy-mm-dd 형식으로 오버라이딩 되어있음.
         }
-         
-         
+                  
       } catch(ClassNotFoundException e) {
          System.out.println("JDBC 드라이버 경로가 잘못 작성되었습니다.");
       } catch(SQLException e){

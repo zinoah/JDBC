@@ -72,7 +72,7 @@ public class JDBCExample3 {
                 int salary = rs.getInt("SALARY");
                 
                 // Emp 객체를 생성하여 컬럼 값 담기
-                Emp emp =new Emp(empName, deptTitle, salary);
+                Emp emp = new Emp(empName, deptTitle, salary);
                 
                 // 생성된 Emp객체를 List 추가
        

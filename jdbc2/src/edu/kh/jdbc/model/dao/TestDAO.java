@@ -47,7 +47,7 @@ public class TestDAO {
 	 * @param vo1
 	 * @return result
 	 */
-	public int insert(Connection conn, TestVO vo1)  throws SQLException{
+	public int insert(Connection conn, TestVO vo1) throws SQLException{
 		// 1. 결과 저장용 변수 선언 
 		int result = 0;
 		

@@ -7,7 +7,7 @@ import edu.kh.jdbc.model.vo.TestVO;
 
 public class Run {
 
-	
+	// 작성순서		install new software
 	// 1. CreateXMLFile
 	// 2. driver.xml
 	// 3. LoadXMLFile
