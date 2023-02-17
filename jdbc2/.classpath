@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Applications/ojdbc11-21.7.0.0.jar"/>
+	<classpathentry kind="lib" path="/Users/noah/tools/ojdbc11-21.8.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

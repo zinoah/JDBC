@@ -1,49 +1,51 @@
 package edu.kh.jdbc.main.model.service;
 
+import static edu.kh.jdbc.common.JDBCTemplate.*;
+
 import java.sql.Connection;
+
 import edu.kh.jdbc.main.model.dao.MainDAO;
 import edu.kh.jdbc.member.vo.Member;
 
-import static edu.kh.jdbc.common.JDBCTemplate.*;
 // Service : 데이터 가공, 트랜잭션 제어 처리
 public class MainService {
+
 	private MainDAO dao = new MainDAO();
-	
-	
-	
-	/** 로그인 서비스
-	 * @param memberPw 
-	 * @param memberId 
+
+	/**
+	 * 로그인 서비스
+	 * 
+	 * @param memberId
+	 * @param memberPw
 	 * @return loginMember
+	 * @throws Exception
 	 */
-	public Member login(String memberId, String memberPw) throws Exception{
-        
+	public Member login(String memberId, String memberPw) throws Exception {
 		// 1. 커넥션 생성
 		Connection conn = getConnection();
-		
-		// 2. DAO 메서드 호출 후 결과 반환 받기 
+
+		// 2. DAO 메서드 호출 후 결과 반환 받기
 		Member loginMember = dao.login(conn, memberId, memberPw);
-		
-		
+
 		// 3. 커넥션 반환
 		close(conn);
-		
-		// 4. 조회 결과 반환 
+
+		// 4. 조회 결과 반환
 		return loginMember;
 	}
 
-
-
-	/** 아이디 중복 검사 서비스 
+	
+	/** 아이디 중복 검사 서비스
 	 * @param memberId
 	 * @return result
-	 * @throws Exception
+	 * @throws Exception 
 	 */
 	public int idDupCheck(String memberId) throws Exception {
+		
 		// 1. 커넥션 생성
 		Connection conn = getConnection();
 		
-		// 2. DAO 메서드 호출 후 결과 반환 받기 
+		// 2. DAO 메서드 호출 후 결과 반환 받기
 		int result = dao.idDupCheck(conn, memberId);
 		
 		// 3. 커넥션 반환
@@ -53,26 +55,24 @@ public class MainService {
 	}
 
 
-
-	/** 회원 가입 서비스
+	/** 회원가입 서비스
 	 * @param member
-	 * @return result 
+	 * @return result
 	 * @throws Exception
 	 */
-	public int signUp(Member member) throws Exception{
-		//1. 커넥션 생성
-		Connection conn = getConnection();
+	public int signUp(Member member) throws Exception {
+		// 1. 커넥션 생성
+				Connection conn = getConnection();
+				
+		// 2. DAO 메서드 호출 후 결과 반환 받기
+		int result = dao.signUp(conn, member);
 		
-		//2. DAO 메서드 호출 후 결과 반환 받기 
-		int result = dao.singUp(conn, member);
-		
-		//3. 트랜잭션 제어 처리
+		// 3. 트랜잭션 제어 처리
 		if(result > 0) commit(conn);
-		else 		   rollback(conn);
+		else rollback(conn);
 		
 		// 4. 커넥션 반환
 		close(conn);
-		
 		
 		return result;
 	}

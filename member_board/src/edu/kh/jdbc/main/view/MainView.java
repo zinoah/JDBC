@@ -15,7 +15,7 @@ public class MainView {
 	private MainService service = new MainService();
 	
 	// 로그인된 회원 정보를 저장한 객체 참조 변수
-	private static Member LoginMember = null;
+	public static Member LoginMember = null;
 	// -> 로그인 X == null
 	// -> 로그인 O == null 
 	
@@ -61,10 +61,10 @@ public class MainView {
 					
 				} else { // 로그인 O
 					System.out.println("****** 회원 메뉴 ******");
-					System.out.print("1. 회원 기능");
-					System.out.print("2. 게시판 기능");
-					System.out.print("0. 로그아웃");
-					System.out.print("99. 프로그램 종료");
+					System.out.println("1. 회원 기능");
+					System.out.println("2. 게시판 기능");
+					System.out.println("0. 로그아웃");
+					System.out.println("99. 프로그램 종료");
 					
 					System.out.print("\n 메뉴 선택 : ");
 					input = sc.nextInt();
@@ -74,7 +74,9 @@ public class MainView {
 					switch(input) {
 					
 					case 1: memberView.memberMenu(LoginMember); break;// 회원기능 서브 메뉴 출력
+					
 					case 2: boardView.boardMenu(); break;// 게시판기능 서브 메뉴 출력
+					
 					case 0: LoginMember = null; // 로그아웃 == loginMember가 참조하는 객체 없음( == null)
 							System.out.println("\n[로그아웃 되었습니다.]\n");
 							input = -1; // do-while문이 종료되지 않도록 0이 아닌값으로 변경
@@ -117,6 +119,9 @@ public class MainView {
 		
 	}
 	
+	/**
+	 * 로그인 화면
+	 */
 	private void login() {
 		
 		System.out.println("[로그인]");
@@ -129,7 +134,7 @@ public class MainView {
 		
 		try {
 			// 로그인 서비스 호출 후 조회 결과를 LoginMember에 저장
-			LoginMember = service.login(memberId, memberPw);
+			LoginMember = service.login(memberId, memberPw);	
 			
 			System.out.println();
 			if(LoginMember != null) {// 로그인 성공 시
@@ -166,7 +171,7 @@ public class MainView {
 			// 아이디를 입력 받아 중복이 아닐 때 까지 반복
 			while(true) {
 				
-				System.out.println("아이디 입력 : ");
+				System.out.print("아이디 입력 : ");
 				memberId = sc.next();
 				
 				// 입력받은 아이디를 매개변수로 전달하여 
@@ -185,16 +190,18 @@ public class MainView {
 				}else { // 중복인 경우
 					System.out.println("[이미 사용중인 아이디입니다.]");
 				}
+			}
 				System.out.println();
 				
 				// 비밀번호 입력
 				// 비밀번호 / 비밀번호 확인이 일치 할때까지 무한 반복
 				
 				while(true) {
-					System.out.println("비밀번호 : ");
+					
+					System.out.print("비밀번호 : ");
 					memberPw1 = sc.next();
 					
-					System.out.println("비밀번호 확인 : ");
+					System.out.print("비밀번호 확인 : ");
 					memberPw2 = sc.next();
 					
 					System.out.println();
@@ -209,7 +216,7 @@ public class MainView {
 					
 					System.out.println();
 				}
-			}
+			
 			
 			// 이름 입력
 			System.out.print("이름 입력 : ");
@@ -218,7 +225,7 @@ public class MainView {
 			// 성별 
 			// M 또는 F가 입력 될 때 까지 무한 반복 
 			while(true) {
-				System.out.print("성별 입력 : ");
+				System.out.print("성별 입력 (M/F): ");
 				memberGender = sc.next().toUpperCase();
 				
 				System.out.println();

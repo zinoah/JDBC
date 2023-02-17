@@ -1,14 +1,13 @@
 package edu.kh.jdbc.member.vo;
 
-public class Member {
-	
-	private int memberNO; // 회원번호
+public class Member {	
+	private int memberNo; // 회원번호
 	private String memberId; // 회원아이디
 	private String memberPw; // 비밀번호
 	private String memberName; // 이름
 	private String memberGender; // 성별
 	private String enrollDate; // 가입일
-	private String secessionFlag; // 탈퇴여부
+	private String secessionFlag; // 탈퇴여부 (Y/N)
 	
 	public Member() {}
 	
@@ -16,24 +15,33 @@ public class Member {
 		this.memberId = memberId;
 		this.memberPw = memberPw;
 		this.memberName = memberName;
-		this.memberGender = memberGender;
+		this.memberGender = memberGender;		
 	}
 
-	public Member(int memberNO, String memberId, String memberName, String memberGender, String enrollDate) {
+	public Member(int memberNo, String memberId, String memberName, String memberGender, String enrollDate) {
 		super();
-		this.memberNO = memberNO;
+		this.memberNo = memberNo;
 		this.memberId = memberId;
 		this.memberName = memberName;
 		this.memberGender = memberGender;
 		this.enrollDate = enrollDate;
 	}
+	
+	
 
-	public int getMemberNO() {
-		return memberNO;
+	public Member(String memberId, String memberName, String memberGender) {
+		super();
+		this.memberId = memberId;
+		this.memberName = memberName;
+		this.memberGender = memberGender;
 	}
 
-	public void setMemberNO(int memberNO) {
-		this.memberNO = memberNO;
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
 	public String getMemberId() {
@@ -83,8 +91,6 @@ public class Member {
 	public void setSecessionFlag(String secessionFlag) {
 		this.secessionFlag = secessionFlag;
 	}
-	
-	
 	
 	
 }

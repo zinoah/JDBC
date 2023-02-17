@@ -9,7 +9,7 @@
 	<!-- entry : K:V 한 쌍 -->
 	<entry key="driver">oracle.jdbc.driver.OracleDriver</entry>
 	<entry key="url">jdbc:oracle:thin:@Localhost:1521:xe</entry>
-	<entry key="user">kh</entry>
-	<entry key="password">kh1234</entry>
+	<entry key="user">member_jh</entry>
+	<entry key="password">member1234</entry>
 	
 </properties>
